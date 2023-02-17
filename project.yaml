@@ -1,0 +1,129 @@
+version: '3.0'
+
+expectations:
+  population_size: 1000
+
+actions:
+
+  generate_study_population_ethnicity:
+    run: cohortextractor:latest generate_cohort
+      --study-definition study_definition_ethnicity --output-dir output/01GSFVAT8883HFFA5QK27G8QBG --output-format=csv.gz
+    outputs:
+      highly_sensitive:
+        cohort: output/01GSFVAT8883HFFA5QK27G8QBG/input_ethnicity.csv.gz
+
+
+  generate_study_population:
+    run: cohortextractor:latest generate_cohort
+      --study-definition study_definition
+      --param codelist_1_path="codelists/codelist_1.csv"
+      --param codelist_1_system="dmd"
+      --param codelist_1_type="event"
+      --param codelist_2_path="codelists/codelist_2.csv"
+      --param codelist_2_system="dmd"
+      --param codelist_2_type="medication"
+      --param codelist_1_frequency="monthly"
+      --param codelist_2_comparison_date="event_1_date"
+      --param codelist_2_period_start="- 365"
+      --param codelist_2_period_end="+ 0"
+      --param operator="AND"
+      --param population="all"
+      --param breakdowns="age"
+      --index-date-range="2019-01-01 to 2022-11-01 by month"
+      --output-dir=output/01GSFVAT8883HFFA5QK27G8QBG
+      --output-format=csv.gz
+    outputs:
+      highly_sensitive:
+        cohort: output/01GSFVAT8883HFFA5QK27G8QBG/input_*.csv.gz
+
+  join_cohorts:
+    run: >
+      cohort-joiner:v0.0.38
+        --lhs output/01GSFVAT8883HFFA5QK27G8QBG/input_20*.csv.gz
+        --rhs output/01GSFVAT8883HFFA5QK27G8QBG/input_ethnicity.csv.gz
+        --output-dir output/01GSFVAT8883HFFA5QK27G8QBG/joined
+    needs: [generate_study_population, generate_study_population_ethnicity]
+    outputs:
+      highly_sensitive:
+        cohort: output/01GSFVAT8883HFFA5QK27G8QBG/joined/input_20*.csv.gz
+
+  generate_measures:
+    run: >
+      python:latest python analysis/measures.py
+        --breakdowns="age"
+        --input_dir="output/01GSFVAT8883HFFA5QK27G8QBG/joined"
+        --measure="med_review"
+
+    needs: [join_cohorts]
+    outputs:
+      moderately_sensitive:
+        measure: output/01GSFVAT8883HFFA5QK27G8QBG/joined/measure*rate.csv
+        decile_measure: output/01GSFVAT8883HFFA5QK27G8QBG/joined/measure*rate_deciles.csv
+
+  top_5_table:
+    run: >
+      python:latest python analysis/top_5.py
+      --codelist-1-path="codelists/codelist_1.csv"
+      --codelist-2-path="codelists/codelist_2.csv"
+      --output-dir="output/01GSFVAT8883HFFA5QK27G8QBG"
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        tables: output/01GSFVAT8883HFFA5QK27G8QBG/joined/top_5*.csv
+
+  deciles_chart:
+    run: >
+      deciles-charts:v0.0.33
+        --input-files output/01GSFVAT8883HFFA5QK27G8QBG/joined/measure_practice_rate_deciles.csv
+        --output-dir output/01GSFVAT8883HFFA5QK27G8QBG/joined
+    config:
+      show_outer_percentiles: true
+      tables:
+        output: true
+      charts:
+        output: true
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        deciles_charts: output/01GSFVAT8883HFFA5QK27G8QBG/joined/deciles_*.*
+
+  plot_measure:
+    run: >
+      python:latest python analysis/plot_measures.py
+        --breakdowns="age"
+        --output-dir output/01GSFVAT8883HFFA5QK27G8QBG
+    needs: [generate_measures]
+    outputs:
+      moderately_sensitive:
+        measure: output/01GSFVAT8883HFFA5QK27G8QBG/plot_measure*.png
+
+  event_counts:
+    run: >
+      python:latest python analysis/event_counts.py --input_dir="output/01GSFVAT8883HFFA5QK27G8QBG/joined" --output_dir="output/01GSFVAT8883HFFA5QK27G8QBG"
+    needs: [join_cohorts]
+    outputs:
+      moderately_sensitive:
+        measure: output/01GSFVAT8883HFFA5QK27G8QBG/event_counts.json
+
+  create_notebook:
+    run: >
+      python:latest python analysis/create_notebook.py
+      --output-dir "output/01GSFVAT8883HFFA5QK27G8QBG"
+      --codelist-1-description="None"
+      --codelist-2-description="None"
+      --codelist-1-link="https://codelists.opensafely.org/codelist/pincer/ast/v1.8"
+      --codelist-2-link="https://codelists.opensafely.org/codelist/opensafely/asthma-inhaler-salbutamol-medication/2020-04-15"
+      --report-title="Medication Review Report"
+      --measure-description="Medication Review"
+      --population="all"
+      --breakdowns="age"
+    outputs:
+      moderately_sensitive:
+        notebook: output/01GSFVAT8883HFFA5QK27G8QBG/report.ipynb
+
+  generate_notebook:
+    run: jupyter:latest jupyter nbconvert /workspace/output/01GSFVAT8883HFFA5QK27G8QBG/report.ipynb --execute --to html --output-dir=/workspace/output/01GSFVAT8883HFFA5QK27G8QBG --ExecutePreprocessor.timeout=86400 --no-input
+    needs: [create_notebook, event_counts, deciles_chart, top_5_table, plot_measure]
+    outputs:
+      moderately_sensitive:
+        notebook: output/01GSFVAT8883HFFA5QK27G8QBG/report.html
