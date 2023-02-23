@@ -9,10 +9,10 @@ actions:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition_ethnicity 
       --param end_date="2023-02-15"
-      --output-dir output/01GSZKEXF55A15DYA8JKFK74HF --output-format=csv.gz
+      --output-dir output/01GSZXZH2S4AEYNBMSCS5B08DQ --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GSZKEXF55A15DYA8JKFK74HF/input_ethnicity.csv.gz
+        cohort: output/01GSZXZH2S4AEYNBMSCS5B08DQ/input_ethnicity.csv.gz
 
 
   generate_study_population:
@@ -31,52 +31,52 @@ actions:
       --param population="all"
       --param breakdowns="sex,age"
       --index-date-range="2019-09-01 to 2023-02-15 by month"
-      --output-dir=output/01GSZKEXF55A15DYA8JKFK74HF
+      --output-dir=output/01GSZXZH2S4AEYNBMSCS5B08DQ
       --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GSZKEXF55A15DYA8JKFK74HF/input_*.csv.gz
+        cohort: output/01GSZXZH2S4AEYNBMSCS5B08DQ/input_*.csv.gz
 
   join_cohorts:
     run: >
       cohort-joiner:v0.0.38
-        --lhs output/01GSZKEXF55A15DYA8JKFK74HF/input_20*.csv.gz
-        --rhs output/01GSZKEXF55A15DYA8JKFK74HF/input_ethnicity.csv.gz
-        --output-dir output/01GSZKEXF55A15DYA8JKFK74HF/joined
+        --lhs output/01GSZXZH2S4AEYNBMSCS5B08DQ/input_20*.csv.gz
+        --rhs output/01GSZXZH2S4AEYNBMSCS5B08DQ/input_ethnicity.csv.gz
+        --output-dir output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined
     needs: [generate_study_population, generate_study_population_ethnicity]
     outputs:
       highly_sensitive:
-        cohort: output/01GSZKEXF55A15DYA8JKFK74HF/joined/input_20*.csv.gz
+        cohort: output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined/input_20*.csv.gz
 
   generate_measures:
     run: >
       python:latest python analysis/measures.py
         --breakdowns="sex,age"
-        --input_dir="output/01GSZKEXF55A15DYA8JKFK74HF/joined"
+        --input_dir="output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined"
         --measure="med_review"
 
     needs: [join_cohorts]
     outputs:
       moderately_sensitive:
-        measure: output/01GSZKEXF55A15DYA8JKFK74HF/joined/measure*rate.csv
-        decile_measure: output/01GSZKEXF55A15DYA8JKFK74HF/joined/measure*rate_deciles.csv
+        measure: output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined/measure*rate.csv
+        decile_measure: output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined/measure*rate_deciles.csv
 
   top_5_table:
     run: >
       python:latest python analysis/top_5.py
       --codelist-1-path="codelists/codelist_1.csv"
       --codelist-2-path="codelists/codelist_2.csv"
-      --output-dir="output/01GSZKEXF55A15DYA8JKFK74HF"
+      --output-dir="output/01GSZXZH2S4AEYNBMSCS5B08DQ"
     needs: [generate_measures]
     outputs:
       moderately_sensitive:
-        tables: output/01GSZKEXF55A15DYA8JKFK74HF/joined/top_5*.csv
+        tables: output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined/top_5*.csv
 
   deciles_chart:
     run: >
       deciles-charts:v0.0.33
-        --input-files output/01GSZKEXF55A15DYA8JKFK74HF/joined/measure_practice_rate_deciles.csv
-        --output-dir output/01GSZKEXF55A15DYA8JKFK74HF/joined
+        --input-files output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined/measure_practice_rate_deciles.csv
+        --output-dir output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined
     config:
       show_outer_percentiles: true
       tables:
@@ -86,30 +86,30 @@ actions:
     needs: [generate_measures]
     outputs:
       moderately_sensitive:
-        deciles_charts: output/01GSZKEXF55A15DYA8JKFK74HF/joined/deciles_*.*
+        deciles_charts: output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined/deciles_*.*
 
   plot_measure:
     run: >
       python:latest python analysis/plot_measures.py
         --breakdowns="sex,age"
-        --output-dir output/01GSZKEXF55A15DYA8JKFK74HF
+        --output-dir output/01GSZXZH2S4AEYNBMSCS5B08DQ
     needs: [generate_measures]
     outputs:
       moderately_sensitive:
-        measure: output/01GSZKEXF55A15DYA8JKFK74HF/plot_measure*.png
+        measure: output/01GSZXZH2S4AEYNBMSCS5B08DQ/plot_measure*.png
 
   event_counts:
     run: >
-      python:latest python analysis/event_counts.py --input_dir="output/01GSZKEXF55A15DYA8JKFK74HF/joined" --output_dir="output/01GSZKEXF55A15DYA8JKFK74HF"
+      python:latest python analysis/event_counts.py --input_dir="output/01GSZXZH2S4AEYNBMSCS5B08DQ/joined" --output_dir="output/01GSZXZH2S4AEYNBMSCS5B08DQ"
     needs: [join_cohorts]
     outputs:
       moderately_sensitive:
-        measure: output/01GSZKEXF55A15DYA8JKFK74HF/event_counts.json
+        measure: output/01GSZXZH2S4AEYNBMSCS5B08DQ/event_counts.json
 
   create_notebook:
     run: >
       python:latest python analysis/create_notebook.py
-      --output-dir "output/01GSZKEXF55A15DYA8JKFK74HF"
+      --output-dir "output/01GSZXZH2S4AEYNBMSCS5B08DQ"
       --codelist-1-description="None"
       --codelist-2-description="None"
       --codelist-1-link="https://codelists.opensafely.org/codelist/opensafely/asthma-inhaler-salbutamol-medication/2020-04-15"
@@ -120,11 +120,11 @@ actions:
       --breakdowns="sex,age"
     outputs:
       moderately_sensitive:
-        notebook: output/01GSZKEXF55A15DYA8JKFK74HF/report.ipynb
+        notebook: output/01GSZXZH2S4AEYNBMSCS5B08DQ/report.ipynb
 
   generate_notebook:
-    run: jupyter:latest jupyter nbconvert /workspace/output/01GSZKEXF55A15DYA8JKFK74HF/report.ipynb --execute --to html --output-dir=/workspace/output/01GSZKEXF55A15DYA8JKFK74HF --ExecutePreprocessor.timeout=86400 --no-input
+    run: jupyter:latest jupyter nbconvert /workspace/output/01GSZXZH2S4AEYNBMSCS5B08DQ/report.ipynb --execute --to html --output-dir=/workspace/output/01GSZXZH2S4AEYNBMSCS5B08DQ --ExecutePreprocessor.timeout=86400 --no-input
     needs: [create_notebook, event_counts, deciles_chart, top_5_table, plot_measure]
     outputs:
       moderately_sensitive:
-        notebook: output/01GSZKEXF55A15DYA8JKFK74HF/report.html
+        notebook: output/01GSZXZH2S4AEYNBMSCS5B08DQ/report.html
