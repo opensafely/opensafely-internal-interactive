@@ -1,51 +1,125 @@
 code,term
-3408611000001107,Salbutamol 100micrograms/dose inhaler (A A H Pharmaceuticals Ltd)
-3410611000001106,Salbutamol 100micrograms/dose inhaler (Mylan)
-3412611000001107,Salbutamol 100micrograms/dose inhaler (Kent Pharmaceuticals Ltd)
-3415711000001107,Salbutamol 100micrograms/dose inhaler (Sandoz Ltd)
-3417111000001102,Salbutamol 100micrograms/dose inhaler (Alliance Healthcare (Distribution) Ltd)
-10432311000001108,Salbutamol 100micrograms/dose inhaler (Arrow Generics Ltd)
-7511000001105,Salbutamol 100micrograms/dose inhaler CFC free (Actavis UK Ltd)
-45111000001100,Salbutamol 100micrograms/dose inhaler CFC free (Mylan)
-757611000001104,Salbutamol 100micrograms/dose inhaler CFC free (Teva UK Ltd)
-18041311000001106,Salbutamol 100micrograms/dose inhaler CFC free (Sandoz Ltd)
-840111000001107,Salbulin 100micrograms/dose inhaler (3M Health Care Ltd)
-3382711000001107,Ventolin 200micrograms/dose Accuhaler (GlaxoSmithKline UK Ltd)
-222311000001102,Ventolin 100micrograms/dose Evohaler (GlaxoSmithKline UK Ltd)
-3214211000001100,Ventolin 200microgram Rotacaps (GlaxoSmithKline UK Ltd)
-3218011000001101,Ventolin 400microgram Rotacaps (GlaxoSmithKline UK Ltd)
-106511000001103,Salamol 100micrograms/dose inhaler CFC free (Teva UK Ltd)
-3215311000001107,Salamol 100micrograms/dose Easi-Breathe inhaler (Teva UK Ltd)
-20434411000001107,Salamol 100micrograms/dose inhaler CFC free (Arrow Generics Ltd)
-3186011000001104,Asmasal 95micrograms/dose Clickhaler (Focus Pharmaceuticals Ltd)
-3293111000001105,Aerolin 100micrograms/dose Autohaler (3M Health Care Ltd)
-3080411000001101,Ventodisks 200microgram with Diskhaler (GlaxoSmithKline UK Ltd)
-3086111000001109,Ventodisks 200microgram (GlaxoSmithKline UK Ltd)
-3083011000001100,Ventodisks 400microgram with Diskhaler (GlaxoSmithKline UK Ltd)
-3089011000001102,Ventodisks 400microgram (GlaxoSmithKline UK Ltd)
-597011000001101,Airomir 100micrograms/dose inhaler (Teva UK Ltd)
-3214311000001108,Airomir 100micrograms/dose Autohaler (Teva UK Ltd)
-3214611000001103,Salbutamol 200 Cyclocaps (Teva UK Ltd)
-3217611000001109,Salbutamol 400 Cyclocaps (Teva UK Ltd)
-3384111000001103,Pulvinal Salbutamol 200micrograms/dose dry powder inhaler (Chiesi Ltd)
-9205211000001104,Easyhaler Salbutamol sulfate 100micrograms/dose dry powder inhaler (Orion Pharma (UK) Ltd)
-9204911000001109,Easyhaler Salbutamol sulfate 200micrograms/dose dry powder inhaler (Orion Pharma (UK) Ltd)
-13533511000001104,Salbulin Novolizer 100micrograms/dose inhalation powder (Mylan)
-13533711000001109,Salbulin Novolizer 100micrograms/dose inhalation powder refill (Mylan)
-18148111000001107,Asmavent 100micrograms/dose inhaler CFC free (Kent Pharmaceuticals Ltd)
-22503111000001109,AirSalb 100micrograms/dose inhaler CFC free (Sandoz Ltd)
-35936511000001108,Salbutamol 100micrograms/dose inhaler
-35936411000001109,Salbutamol 100micrograms/dose breath actuated inhaler
-35937211000001107,Salbutamol 95micrograms/dose dry powder inhaler
-35936711000001103,Salbutamol 200microgram inhalation powder blisters with device
-35936911000001101,Salbutamol 400microgram inhalation powder blisters with device
-35936611000001107,Salbutamol 200microgram inhalation powder blisters
-35936811000001106,Salbutamol 400microgram inhalation powder blisters
-320139002,Salbutamol 100micrograms/dose inhaler CFC free
-320141001,Salbutamol 200micrograms/dose dry powder inhaler
-320178003,Salbutamol 200microgram inhalation powder capsules
-320179006,Salbutamol 400microgram inhalation powder capsules
-320151000,Salbutamol 100micrograms/dose breath actuated inhaler CFC free
-9207411000001106,Salbutamol 100micrograms/dose dry powder inhaler
-13566211000001103,Salbutamol 100micrograms/dose dry powder inhalation cartridge with device
-13566111000001109,Salbutamol 100micrograms/dose dry powder inhalation cartridge
+103781000119103,Allergic bronchopulmonary mycosis
+1064811000000103,Moderate acute exacerbation of asthma
+1064821000000109,Life threatening acute exacerbation of asthma
+10674711000119105,Acute severe exacerbation of asthma co-occurrent with allergic rhinitis
+10674991000119104,Intermittent allergic asthma
+10675391000119101,Severe controlled persistent asthma
+10675431000119106,Severe persistent allergic asthma
+10675471000119109,Acute severe exacerbation of severe persistent allergic asthma
+10675551000119104,Acute severe exacerbation of severe persistent asthma co-occurrent with allergic rhinitis
+10675751000119107,Severe uncontrolled persistent asthma
+10675871000119106,Mild persistent allergic asthma
+10675911000119109,Acute severe exacerbation of mild persistent allergic asthma
+10675991000119100,Acute severe exacerbation of mild persistent allergic asthma co-occurrent with allergic rhinitis
+10676391000119108,Moderate persistent allergic asthma
+10676431000119103,Acute severe exacerbation of moderate persistent allergic asthma
+10676511000119109,Acute severe exacerbation of moderate persistent asthma co-occurrent with allergic rhinitis
+10692681000119108,Aspirin exacerbated respiratory disease
+10692721000119102,Chronic obstructive asthma co-occurrent with acute exacerbation of asthma
+10692761000119107,Asthma-chronic obstructive pulmonary disease overlap syndrome
+10742121000119104,Asthma in mother complicating childbirth
+1086701000000102,Life threatening acute exacerbation of allergic asthma
+1086711000000100,Life threatening acute exacerbation of intrinsic asthma
+1103911000000103,Severe asthma with fungal sensitisation
+11641008,Millers' asthma
+12428000,Intrinsic asthma without status asthmaticus
+124991000119109,Severe persistent asthma co-occurrent with allergic rhinitis
+125001000119103,Moderate persistent asthma co-occurrent with allergic rhinitis
+125011000119100,Mild persistent asthma co-occurrent with allergic rhinitis
+125021000119107,Intermittent asthma co-occurrent with allergic rhinitis
+135171000119106,Acute exacerbation of moderate persistent asthma
+135181000119109,Acute exacerbation of mild persistent asthma
+161527007,History of asthma
+16584951000119101,Oral steroid-dependent asthma
+1741000119102,Intermittent asthma uncontrolled
+1751000119100,Acute exacerbation of chronic obstructive airways disease with asthma
+18041002,Printers' asthma
+183478001,Emergency hospital admission for asthma
+195949008,Chronic asthmatic bronchitis
+195967001,Asthma
+195977004,Mixed asthma
+19849005,Meat-wrappers' asthma
+225057002,Brittle asthma
+233678006,Childhood asthma
+233679003,Late onset asthma
+233683003,Hay fever with asthma
+233687002,Colophony asthma
+233688007,Sulfite-induced asthma
+2360001000004109,Steroid dependent asthma
+266361008,Non-allergic asthma
+281239006,Exacerbation of asthma
+30352005,Allergic-infective asthma
+304527002,Acute asthma
+31387002,Exercise-induced asthma
+34015007,Bakers' asthma
+370205009,Asthma causes night symptoms 1 to 2 times per month
+370218001,Mild asthma
+370219009,Moderate asthma
+370220003,Occasional asthma
+370221004,Severe asthma
+37981002,Allergic bronchopulmonary aspergillosis
+389145006,Allergic asthma
+395022009,Asthma night-time symptoms
+401000119107,Asthma with irreversible airway obstruction
+401193004,Asthma confirmed
+404804003,Platinum asthma
+404806001,Cheese-makers' asthma
+404808000,Isocyanate induced asthma
+405944004,Asthmatic bronchitis
+407674008,Aspirin-induced asthma
+409663006,Cough variant asthma
+41553006,Detergent asthma
+418395004,Tea-makers' asthma
+423889005,Non-immunoglobulin E mediated allergic asthma
+424199006,Substance induced asthma
+424643009,Immunoglobulin E-mediated allergic asthma
+425969006,Exacerbation of intermittent asthma
+426656000,Severe persistent asthma
+426979002,Mild persistent asthma
+427295004,Moderate persistent asthma
+427603009,Intermittent asthma
+427679007,Mild intermittent asthma
+429258006,History of aspirin exacerbated respiratory disease
+442025000,Acute exacerbation of chronic asthmatic bronchitis
+445427006,Seasonal asthma
+55570000,Asthma without status asthmaticus
+56968009,Asthma caused by wood dust
+57607007,Occupational asthma
+59786004,Weavers' cough
+63088003,Allergic asthma without status asthmaticus
+703953004,Allergic asthma caused by Dermatophagoides pteronyssinus
+703954005,Allergic asthma caused by Dermatophagoides farinae
+707444001,Uncomplicated asthma
+707445000,Exacerbation of mild persistent asthma
+707446004,Exacerbation of moderate persistent asthma
+707447008,Exacerbation of severe persistent asthma
+707511009,Uncomplicated mild persistent asthma
+707512002,Uncomplicated moderate persistent asthma
+707513007,Uncomplicated severe persistent asthma
+707979007,Acute severe exacerbation of severe persistent asthma
+707980005,Acute severe exacerbation of moderate persistent asthma
+707981009,Acute severe exacerbation of mild persistent asthma
+708038006,Acute exacerbation of asthma
+708090002,Acute severe exacerbation of asthma
+708093000,Acute exacerbation of immunoglobulin E-mediated allergic asthma
+708094006,Acute exacerbation of intrinsic asthma
+708095007,Acute severe exacerbation of immunoglobin E-mediated allergic asthma
+708096008,Acute severe exacerbation of intrinsic asthma
+72301000119103,Asthma in pregnancy
+733858005,Acute severe refractory exacerbation of asthma
+734904007,Life threatening acute exacerbation of asthma
+734905008,Moderate acute exacerbation of asthma
+735588005,Uncomplicated allergic asthma
+735589002,Uncomplicated non-allergic asthma
+762521001,Exacerbation of allergic asthma
+771901000000100,Asthma causes night time symptoms 1 to 2 times per week
+771941000000102,Asthma causes symptoms most nights
+782513000,Acute severe exacerbation of allergic asthma
+782520007,Exacerbation of allergic asthma due to infection
+786836003,Near fatal asthma
+829976001,Thunderstorm asthma
+866881000000101,Chronic asthma with fixed airflow obstruction
+92807009,Chemical-induced asthma
+93432008,Drug-induced asthma
+99031000119107,Acute exacerbation of asthma co-occurrent with allergic rhinitis
