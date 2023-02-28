@@ -5,23 +5,23 @@ expectations:
 
 actions:
 
-  generate_study_population_ethnicity_01GT95QZBKCGKYGFHQG0HHNTED:
+  generate_study_population_ethnicity_01GTBSG31VTHK71TWKQXP0XF12:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition_ethnicity 
-      --param end_date="2023-02-15"
-      --output-dir output/01GT95QZBKCGKYGFHQG0HHNTED --output-format=csv.gz
+      --param end_date="2023-02-22"
+      --output-dir output/01GTBSG31VTHK71TWKQXP0XF12 --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GT95QZBKCGKYGFHQG0HHNTED/input_ethnicity.csv.gz
+        cohort: output/01GTBSG31VTHK71TWKQXP0XF12/input_ethnicity.csv.gz
 
 
-  generate_study_population_01GT95QZBKCGKYGFHQG0HHNTED:
+  generate_study_population_01GTBSG31VTHK71TWKQXP0XF12:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition
       --param codelist_1_path="codelists/codelist_1.csv"
-      --param codelist_1_system="snomed"
+      --param codelist_1_type="event"
       --param codelist_2_path="codelists/codelist_2.csv"
-      --param codelist_2_system="snomed"
+      --param codelist_2_type="event"
       --param codelist_1_frequency="monthly"
       --param time_value="5"
       --param time_scale="years"
@@ -30,86 +30,86 @@ actions:
       --param operator="AND"
       --param population="all"
       --param breakdowns="sex,age"
-      --index-date-range="2019-09-01 to 2023-02-15 by month"
-      --output-dir=output/01GT95QZBKCGKYGFHQG0HHNTED
+      --index-date-range="2019-09-01 to 2023-02-22 by month"
+      --output-dir=output/01GTBSG31VTHK71TWKQXP0XF12
       --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GT95QZBKCGKYGFHQG0HHNTED/input_*.csv.gz
+        cohort: output/01GTBSG31VTHK71TWKQXP0XF12/input_*.csv.gz
 
-  join_cohorts_01GT95QZBKCGKYGFHQG0HHNTED:
+  join_cohorts_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
       cohort-joiner:v0.0.38
-        --lhs output/01GT95QZBKCGKYGFHQG0HHNTED/input_20*.csv.gz
-        --rhs output/01GT95QZBKCGKYGFHQG0HHNTED/input_ethnicity.csv.gz
-        --output-dir output/01GT95QZBKCGKYGFHQG0HHNTED/joined
-    needs: [generate_study_population_01GT95QZBKCGKYGFHQG0HHNTED, generate_study_population_ethnicity_01GT95QZBKCGKYGFHQG0HHNTED]
+        --lhs output/01GTBSG31VTHK71TWKQXP0XF12/input_20*.csv.gz
+        --rhs output/01GTBSG31VTHK71TWKQXP0XF12/input_ethnicity.csv.gz
+        --output-dir output/01GTBSG31VTHK71TWKQXP0XF12/joined
+    needs: [generate_study_population_01GTBSG31VTHK71TWKQXP0XF12, generate_study_population_ethnicity_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       highly_sensitive:
-        cohort: output/01GT95QZBKCGKYGFHQG0HHNTED/joined/input_20*.csv.gz
+        cohort: output/01GTBSG31VTHK71TWKQXP0XF12/joined/input_20*.csv.gz
 
-  generate_measures_01GT95QZBKCGKYGFHQG0HHNTED:
+  generate_measures_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
       python:latest python analysis/measures.py
         --breakdowns="sex,age"
-        --input_dir="output/01GT95QZBKCGKYGFHQG0HHNTED/joined"
+        --input_dir="output/01GTBSG31VTHK71TWKQXP0XF12/joined"
         --measure="med_review"
 
-    needs: [join_cohorts_01GT95QZBKCGKYGFHQG0HHNTED]
+    needs: [join_cohorts_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       moderately_sensitive:
-        measure: output/01GT95QZBKCGKYGFHQG0HHNTED/joined/measure*rate.csv
-        decile_measure: output/01GT95QZBKCGKYGFHQG0HHNTED/joined/measure*rate_deciles.csv
+        measure: output/01GTBSG31VTHK71TWKQXP0XF12/joined/measure*rate.csv
+        decile_measure: output/01GTBSG31VTHK71TWKQXP0XF12/joined/measure*rate_deciles.csv
 
-  top_5_table_01GT95QZBKCGKYGFHQG0HHNTED:
+  top_5_table_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
       python:latest python analysis/top_5.py
       --codelist-1-path="codelists/codelist_1.csv"
       --codelist-2-path="codelists/codelist_2.csv"
-      --output-dir="output/01GT95QZBKCGKYGFHQG0HHNTED"
-    needs: [generate_measures_01GT95QZBKCGKYGFHQG0HHNTED]
+      --output-dir="output/01GTBSG31VTHK71TWKQXP0XF12"
+    needs: [generate_measures_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       moderately_sensitive:
-        tables: output/01GT95QZBKCGKYGFHQG0HHNTED/joined/top_5*.csv
+        tables: output/01GTBSG31VTHK71TWKQXP0XF12/joined/top_5*.csv
 
-  deciles_chart_01GT95QZBKCGKYGFHQG0HHNTED:
+  deciles_chart_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
       deciles-charts:v0.0.33
-        --input-files output/01GT95QZBKCGKYGFHQG0HHNTED/joined/measure_practice_rate_deciles.csv
-        --output-dir output/01GT95QZBKCGKYGFHQG0HHNTED/joined
+        --input-files output/01GTBSG31VTHK71TWKQXP0XF12/joined/measure_practice_rate_deciles.csv
+        --output-dir output/01GTBSG31VTHK71TWKQXP0XF12/joined
     config:
       show_outer_percentiles: true
       tables:
         output: true
       charts:
         output: true
-    needs: [generate_measures_01GT95QZBKCGKYGFHQG0HHNTED]
+    needs: [generate_measures_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       moderately_sensitive:
-        deciles_charts: output/01GT95QZBKCGKYGFHQG0HHNTED/joined/deciles_*.*
+        deciles_charts: output/01GTBSG31VTHK71TWKQXP0XF12/joined/deciles_*.*
 
-  plot_measure_01GT95QZBKCGKYGFHQG0HHNTED:
+  plot_measure_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
       python:latest python analysis/plot_measures.py
         --breakdowns="sex,age"
-        --output-dir output/01GT95QZBKCGKYGFHQG0HHNTED
-    needs: [generate_measures_01GT95QZBKCGKYGFHQG0HHNTED]
+        --output-dir output/01GTBSG31VTHK71TWKQXP0XF12
+    needs: [generate_measures_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       moderately_sensitive:
-        measure: output/01GT95QZBKCGKYGFHQG0HHNTED/plot_measure*.png
+        measure: output/01GTBSG31VTHK71TWKQXP0XF12/plot_measure*.png
 
-  event_counts_01GT95QZBKCGKYGFHQG0HHNTED:
+  event_counts_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
-      python:latest python analysis/event_counts.py --input_dir="output/01GT95QZBKCGKYGFHQG0HHNTED/joined" --output_dir="output/01GT95QZBKCGKYGFHQG0HHNTED"
-    needs: [join_cohorts_01GT95QZBKCGKYGFHQG0HHNTED]
+      python:latest python analysis/event_counts.py --input_dir="output/01GTBSG31VTHK71TWKQXP0XF12/joined" --output_dir="output/01GTBSG31VTHK71TWKQXP0XF12"
+    needs: [join_cohorts_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       moderately_sensitive:
-        measure: output/01GT95QZBKCGKYGFHQG0HHNTED/event_counts.json
+        measure: output/01GTBSG31VTHK71TWKQXP0XF12/event_counts.json
 
-  create_notebook_01GT95QZBKCGKYGFHQG0HHNTED:
+  create_notebook_01GTBSG31VTHK71TWKQXP0XF12:
     run: >
       python:latest python analysis/create_notebook.py
-      --output-dir "output/01GT95QZBKCGKYGFHQG0HHNTED"
+      --output-dir "output/01GTBSG31VTHK71TWKQXP0XF12"
       --codelist-1-description="None"
       --codelist-2-description="None"
       --codelist-1-link="https://codelists.opensafely.org/codelist/opensafely/asthma-inhaler-salbutamol-medication/2020-04-15"
@@ -120,11 +120,11 @@ actions:
       --breakdowns="sex,age"
     outputs:
       moderately_sensitive:
-        notebook: output/01GT95QZBKCGKYGFHQG0HHNTED/report.ipynb
+        notebook: output/01GTBSG31VTHK71TWKQXP0XF12/report.ipynb
 
-  generate_notebook_01GT95QZBKCGKYGFHQG0HHNTED:
-    run: jupyter:latest jupyter nbconvert /workspace/output/01GT95QZBKCGKYGFHQG0HHNTED/report.ipynb --execute --to html --output-dir=/workspace/output/01GT95QZBKCGKYGFHQG0HHNTED --ExecutePreprocessor.timeout=86400 --no-input
-    needs: [create_notebook_01GT95QZBKCGKYGFHQG0HHNTED, event_counts_01GT95QZBKCGKYGFHQG0HHNTED, deciles_chart_01GT95QZBKCGKYGFHQG0HHNTED, top_5_table_01GT95QZBKCGKYGFHQG0HHNTED, plot_measure_01GT95QZBKCGKYGFHQG0HHNTED]
+  generate_notebook_01GTBSG31VTHK71TWKQXP0XF12:
+    run: jupyter:latest jupyter nbconvert /workspace/output/01GTBSG31VTHK71TWKQXP0XF12/report.ipynb --execute --to html --output-dir=/workspace/output/01GTBSG31VTHK71TWKQXP0XF12 --ExecutePreprocessor.timeout=86400 --no-input
+    needs: [create_notebook_01GTBSG31VTHK71TWKQXP0XF12, event_counts_01GTBSG31VTHK71TWKQXP0XF12, deciles_chart_01GTBSG31VTHK71TWKQXP0XF12, top_5_table_01GTBSG31VTHK71TWKQXP0XF12, plot_measure_01GTBSG31VTHK71TWKQXP0XF12]
     outputs:
       moderately_sensitive:
-        notebook: output/01GT95QZBKCGKYGFHQG0HHNTED/report.html
+        notebook: output/01GTBSG31VTHK71TWKQXP0XF12/report.html
