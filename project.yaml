@@ -5,17 +5,17 @@ expectations:
 
 actions:
 
-  generate_study_population_ethnicity_01GTHQD6R7954WMPPBEF89E3HV:
+  generate_study_population_ethnicity_01GTM8RXTN1H66AGY6C1J7T01A:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition_ethnicity
       --param end_date="2023-02-22"
-      --output-dir output/01GTHQD6R7954WMPPBEF89E3HV --output-format=csv.gz
+      --output-dir output/01GTM8RXTN1H66AGY6C1J7T01A --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GTHQD6R7954WMPPBEF89E3HV/input_ethnicity.csv.gz
+        cohort: output/01GTM8RXTN1H66AGY6C1J7T01A/input_ethnicity.csv.gz
 
 
-  generate_study_population_01GTHQD6R7954WMPPBEF89E3HV:
+  generate_study_population_01GTM8RXTN1H66AGY6C1J7T01A:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition
       --param codelist_1_path="codelists/codelist_1.csv"
@@ -23,106 +23,107 @@ actions:
       --param codelist_2_path="codelists/codelist_2.csv"
       --param codelist_2_type="event"
       --param codelist_1_frequency="monthly"
-      --param time_value="1"
-      --param time_scale="years"
+      --param time_value="6"
+      --param time_scale="months"
       --param time_event="before"
       --param codelist_2_comparison_date="event_1_date"
       --param operator="AND"
       --param population="adults"
-      --param breakdowns="age,imd"
+      --param breakdowns="sex,age,imd"
       --index-date-range="2022-08-26 to 2023-02-22 by month"
-      --output-dir=output/01GTHQD6R7954WMPPBEF89E3HV
+      --output-dir=output/01GTM8RXTN1H66AGY6C1J7T01A
       --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GTHQD6R7954WMPPBEF89E3HV/input_*.csv.gz
+        cohort: output/01GTM8RXTN1H66AGY6C1J7T01A/input_*.csv.gz
 
-  join_cohorts_01GTHQD6R7954WMPPBEF89E3HV:
+  join_cohorts_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
       cohort-joiner:v0.0.38
-        --lhs output/01GTHQD6R7954WMPPBEF89E3HV/input_20*.csv.gz
-        --rhs output/01GTHQD6R7954WMPPBEF89E3HV/input_ethnicity.csv.gz
-        --output-dir output/01GTHQD6R7954WMPPBEF89E3HV/joined
-    needs: [generate_study_population_01GTHQD6R7954WMPPBEF89E3HV, generate_study_population_ethnicity_01GTHQD6R7954WMPPBEF89E3HV]
+        --lhs output/01GTM8RXTN1H66AGY6C1J7T01A/input_20*.csv.gz
+        --rhs output/01GTM8RXTN1H66AGY6C1J7T01A/input_ethnicity.csv.gz
+        --output-dir output/01GTM8RXTN1H66AGY6C1J7T01A/joined
+    needs: [generate_study_population_01GTM8RXTN1H66AGY6C1J7T01A, generate_study_population_ethnicity_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       highly_sensitive:
-        cohort: output/01GTHQD6R7954WMPPBEF89E3HV/joined/input_20*.csv.gz
+        cohort: output/01GTM8RXTN1H66AGY6C1J7T01A/joined/input_20*.csv.gz
 
-  generate_measures_01GTHQD6R7954WMPPBEF89E3HV:
+  generate_measures_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
       python:latest python analysis/measures.py
-        --breakdowns="age,imd"
-        --input_dir="output/01GTHQD6R7954WMPPBEF89E3HV/joined"
+        --breakdowns="sex,age,imd"
+        --input_dir="output/01GTM8RXTN1H66AGY6C1J7T01A/joined"
         --measure="med_review"
 
-    needs: [join_cohorts_01GTHQD6R7954WMPPBEF89E3HV]
+    needs: [join_cohorts_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       moderately_sensitive:
-        measure: output/01GTHQD6R7954WMPPBEF89E3HV/joined/measure*rate.csv
-        decile_measure: output/01GTHQD6R7954WMPPBEF89E3HV/joined/measure*rate_deciles.csv
+        measure: output/01GTM8RXTN1H66AGY6C1J7T01A/joined/measure*rate.csv
+        decile_measure: output/01GTM8RXTN1H66AGY6C1J7T01A/joined/measure*rate_deciles.csv
 
-  top_5_table_01GTHQD6R7954WMPPBEF89E3HV:
+  top_5_table_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
       python:latest python analysis/top_5.py
       --codelist-1-path="codelists/codelist_1.csv"
       --codelist-2-path="codelists/codelist_2.csv"
-      --output-dir="output/01GTHQD6R7954WMPPBEF89E3HV"
-    needs: [generate_measures_01GTHQD6R7954WMPPBEF89E3HV]
+      --output-dir="output/01GTM8RXTN1H66AGY6C1J7T01A"
+    needs: [generate_measures_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       moderately_sensitive:
-        tables: output/01GTHQD6R7954WMPPBEF89E3HV/joined/top_5*.csv
+        tables: output/01GTM8RXTN1H66AGY6C1J7T01A/joined/top_5*.csv
 
-  deciles_chart_01GTHQD6R7954WMPPBEF89E3HV:
+  deciles_chart_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
       deciles-charts:v0.0.33
-        --input-files output/01GTHQD6R7954WMPPBEF89E3HV/joined/measure_practice_rate_deciles.csv
-        --output-dir output/01GTHQD6R7954WMPPBEF89E3HV/joined
+        --input-files output/01GTM8RXTN1H66AGY6C1J7T01A/joined/measure_practice_rate_deciles.csv
+        --output-dir output/01GTM8RXTN1H66AGY6C1J7T01A/joined
     config:
       show_outer_percentiles: true
       tables:
         output: true
       charts:
         output: true
-    needs: [generate_measures_01GTHQD6R7954WMPPBEF89E3HV]
+    needs: [generate_measures_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       moderately_sensitive:
-        deciles_charts: output/01GTHQD6R7954WMPPBEF89E3HV/joined/deciles_*.*
+        deciles_charts: output/01GTM8RXTN1H66AGY6C1J7T01A/joined/deciles_*.*
 
-  plot_measure_01GTHQD6R7954WMPPBEF89E3HV:
+  plot_measure_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
       python:latest python analysis/plot_measures.py
-        --breakdowns="age,imd"
-        --output-dir output/01GTHQD6R7954WMPPBEF89E3HV
-    needs: [generate_measures_01GTHQD6R7954WMPPBEF89E3HV]
+        --breakdowns="sex,age,imd"
+        --output-dir output/01GTM8RXTN1H66AGY6C1J7T01A
+    needs: [generate_measures_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       moderately_sensitive:
-        measure: output/01GTHQD6R7954WMPPBEF89E3HV/plot_measure*.png
+        measure: output/01GTM8RXTN1H66AGY6C1J7T01A/plot_measure*.png
 
-  event_counts_01GTHQD6R7954WMPPBEF89E3HV:
+  event_counts_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
-      python:latest python analysis/event_counts.py --input_dir="output/01GTHQD6R7954WMPPBEF89E3HV/joined" --output_dir="output/01GTHQD6R7954WMPPBEF89E3HV"
-    needs: [join_cohorts_01GTHQD6R7954WMPPBEF89E3HV]
+      python:latest python analysis/event_counts.py --input_dir="output/01GTM8RXTN1H66AGY6C1J7T01A/joined" --output_dir="output/01GTM8RXTN1H66AGY6C1J7T01A"
+    needs: [join_cohorts_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       moderately_sensitive:
-        measure: output/01GTHQD6R7954WMPPBEF89E3HV/event_counts.json
+        measure: output/01GTM8RXTN1H66AGY6C1J7T01A/event_counts.json
 
-  generate_report_01GTHQD6R7954WMPPBEF89E3HV:
+  generate_report_01GTM8RXTN1H66AGY6C1J7T01A:
     run: >
       python:latest python analysis/render_report.py
       --report-title="DMARDs & Medication Review - OpenSAFELY Service Restoration Observatory"
       --population="adults"
-      --breakdowns="age,imd"
+      --breakdowns="sex,age,imd"
       --codelist-1-name="DMARDs"
       --codelist-2-name="Medication Review - OpenSAFELY Service Restoration Observatory"
       --codelist-1-link="opensafely/dmards/2020-06-23"
       --codelist-2-link="opensafely/medication-review-opensafely-service-restoration-observatory/24b50f64"
-      --time-value="1"
-      --time-scale="years"
+      --time-value="6"
+      --time-scale="months"
       --time-event="before"
       --start-date="2022-08-26"
       --end-date="2023-02-22"
       --num-practices=1000
-    needs: [event_counts_01GTHQD6R7954WMPPBEF89E3HV, deciles_chart_01GTHQD6R7954WMPPBEF89E3HV, top_5_table_01GTHQD6R7954WMPPBEF89E3HV, plot_measure_01GTHQD6R7954WMPPBEF89E3HV]
+      --request-id="01GTM8RXTN1H66AGY6C1J7T01A"
+    needs: [event_counts_01GTM8RXTN1H66AGY6C1J7T01A, deciles_chart_01GTM8RXTN1H66AGY6C1J7T01A, top_5_table_01GTM8RXTN1H66AGY6C1J7T01A, plot_measure_01GTM8RXTN1H66AGY6C1J7T01A]
     outputs:
       moderately_sensitive:
-        notebook: output/01GTHQD6R7954WMPPBEF89E3HV/report.html
+        notebook: output/01GTM8RXTN1H66AGY6C1J7T01A/report.html
