@@ -43,7 +43,6 @@ def get_data(
     time_event="",
     start_date="",
     end_date="",
-    num_practices=0,
     request_id="",
 ):
     """
@@ -61,7 +60,6 @@ def get_data(
         time_event (str): time event for the report
         start_date (str): start date for the report
         end_date (str): end date for the report
-        num_practices (int): number of practices in the report
         request_id (str): request id - this dictates the path to the data
     Returns:
         dict containing the data
@@ -94,27 +92,31 @@ def get_data(
     breakdowns_options = {
         "age": {
             "title": "Age",
-            "description": "Age breakdown",
+            "description": "Age is divided into 10 year age bands.",
             "figure": figure_paths["age"],
         },
         "ethnicity": {
             "title": "Ethnicity",
-            "description": "Ethnicity breakdown",
+            "description": "Ethnicity is categorised into 6 high-level groups, as defined by the codelist below.",
+            "link": "https://www.opencodelists.org/codelist/opensafely/ethnicity-snomed-0removed/2e641f61/",
+            "link_description": "Ethnicity codelist",
             "figure": figure_paths["ethnicity"],
         },
         "sex": {
             "title": "Sex",
-            "description": "Sex breakdown",
+            "description": "",
             "figure": figure_paths["sex"],
         },
         "imd": {
             "title": "Index of Multiple Deprivation",
-            "description": "Index of Multiple Deprivation breakdown",
+            "description": "Index of Multiple Deprivation breakdown is presented as quintiles, based on English indices of deprivation 2019. These quintile range from 1 (most deprived) to 5 (least deprived) See the link below for more details.",
+            "link": "https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019",
+            "link_description": "English Indices of Deprivation 2019",
             "figure": figure_paths["imd"],
         },
         "region": {
             "title": "Region",
-            "description": "Region breakdown",
+            "description": "Region is categorised into 9 regions in England. A patients' region is determined as the region of the practice they are registered at.",
             "figure": figure_paths["region"],
         },
     }
@@ -151,7 +153,6 @@ def get_data(
         "time_value": time_value,
         "time_scale": time_scale,
         "time_event": time_event,
-        "num_practices": num_practices,
     }
     return report_data
 
@@ -194,7 +195,6 @@ def parse_args():
     parser.add_argument("--time-value", type=str, default="")
     parser.add_argument("--time-scale", type=str, default="")
     parser.add_argument("--time-event", type=str, default="")
-    parser.add_argument("--num-practices", type=int, default=0)
     parser.add_argument("--request-id", type=str, default="")
 
     return parser.parse_args()
@@ -218,7 +218,6 @@ if __name__ == "__main__":
         time_event=args.time_event,
         start_date=args.start_date,
         end_date=args.end_date,
-        num_practices=args.num_practices,
         request_id=args.request_id,
     )
 
