@@ -5,17 +5,17 @@ expectations:
 
 actions:
 
-  generate_study_population_ethnicity_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  generate_study_population_ethnicity_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition_ethnicity
       --param end_date="2023-03-01"
-      --output-dir output/01GV5GNQPG3SDNRVGETDTX1T5Y --output-format=csv.gz
+      --output-dir output/01GVDPH4C178NC5XKZHCFPNQJ2 --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GV5GNQPG3SDNRVGETDTX1T5Y/input_ethnicity.csv.gz
+        cohort: output/01GVDPH4C178NC5XKZHCFPNQJ2/input_ethnicity.csv.gz
 
 
-  generate_study_population_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  generate_study_population_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition
       --param codelist_1_path="codelists/codelist_1.csv"
@@ -23,106 +23,106 @@ actions:
       --param codelist_2_path="codelists/codelist_2.csv"
       --param codelist_2_type="event"
       --param codelist_1_frequency="monthly"
-      --param time_value="3"
-      --param time_scale="weeks"
+      --param time_value="5"
+      --param time_scale="years"
       --param time_event="before"
       --param codelist_2_comparison_date="end_date"
       --param operator="AND"
       --param population="all"
-      --param breakdowns="sex"
+      --param breakdowns="sex,age"
       --index-date-range="2022-09-02 to 2023-03-01 by month"
-      --output-dir=output/01GV5GNQPG3SDNRVGETDTX1T5Y
+      --output-dir=output/01GVDPH4C178NC5XKZHCFPNQJ2
       --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GV5GNQPG3SDNRVGETDTX1T5Y/input_*.csv.gz
+        cohort: output/01GVDPH4C178NC5XKZHCFPNQJ2/input_*.csv.gz
 
-  join_cohorts_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  join_cohorts_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
       cohort-joiner:v0.0.38
-        --lhs output/01GV5GNQPG3SDNRVGETDTX1T5Y/input_20*.csv.gz
-        --rhs output/01GV5GNQPG3SDNRVGETDTX1T5Y/input_ethnicity.csv.gz
-        --output-dir output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined
-    needs: [generate_study_population_01GV5GNQPG3SDNRVGETDTX1T5Y, generate_study_population_ethnicity_01GV5GNQPG3SDNRVGETDTX1T5Y]
+        --lhs output/01GVDPH4C178NC5XKZHCFPNQJ2/input_20*.csv.gz
+        --rhs output/01GVDPH4C178NC5XKZHCFPNQJ2/input_ethnicity.csv.gz
+        --output-dir output/01GVDPH4C178NC5XKZHCFPNQJ2/joined
+    needs: [generate_study_population_01GVDPH4C178NC5XKZHCFPNQJ2, generate_study_population_ethnicity_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       highly_sensitive:
-        cohort: output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined/input_20*.csv.gz
+        cohort: output/01GVDPH4C178NC5XKZHCFPNQJ2/joined/input_20*.csv.gz
 
-  generate_measures_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  generate_measures_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
       python:latest python -m analysis.measures
-        --breakdowns="sex"
-        --input_dir="output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined"
+        --breakdowns="sex,age"
+        --input_dir="output/01GVDPH4C178NC5XKZHCFPNQJ2/joined"
         --measure="med_review"
 
-    needs: [join_cohorts_01GV5GNQPG3SDNRVGETDTX1T5Y]
+    needs: [join_cohorts_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       moderately_sensitive:
-        measure: output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined/measure*rate.csv
-        decile_measure: output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined/measure*rate_deciles.csv
+        measure: output/01GVDPH4C178NC5XKZHCFPNQJ2/joined/measure*rate.csv
+        decile_measure: output/01GVDPH4C178NC5XKZHCFPNQJ2/joined/measure*rate_deciles.csv
 
-  top_5_table_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  top_5_table_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
       python:latest python analysis/top_5.py
       --codelist-1-path="codelists/codelist_1.csv"
       --codelist-2-path="codelists/codelist_2.csv"
-      --output-dir="output/01GV5GNQPG3SDNRVGETDTX1T5Y"
-    needs: [generate_measures_01GV5GNQPG3SDNRVGETDTX1T5Y]
+      --output-dir="output/01GVDPH4C178NC5XKZHCFPNQJ2"
+    needs: [generate_measures_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       moderately_sensitive:
-        tables: output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined/top_5*.csv
+        tables: output/01GVDPH4C178NC5XKZHCFPNQJ2/joined/top_5*.csv
 
-  deciles_chart_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  deciles_chart_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
       deciles-charts:v0.0.33
-        --input-files output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined/measure_practice_rate_deciles.csv
-        --output-dir output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined
+        --input-files output/01GVDPH4C178NC5XKZHCFPNQJ2/joined/measure_practice_rate_deciles.csv
+        --output-dir output/01GVDPH4C178NC5XKZHCFPNQJ2/joined
     config:
       show_outer_percentiles: true
       tables:
         output: true
       charts:
         output: true
-    needs: [generate_measures_01GV5GNQPG3SDNRVGETDTX1T5Y]
+    needs: [generate_measures_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       moderately_sensitive:
-        deciles_charts: output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined/deciles_*.*
+        deciles_charts: output/01GVDPH4C178NC5XKZHCFPNQJ2/joined/deciles_*.*
 
-  plot_measure_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  plot_measure_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
       python:latest python analysis/plot_measures.py
-        --breakdowns="sex"
-        --output-dir output/01GV5GNQPG3SDNRVGETDTX1T5Y
-    needs: [generate_measures_01GV5GNQPG3SDNRVGETDTX1T5Y]
+        --breakdowns="sex,age"
+        --output-dir output/01GVDPH4C178NC5XKZHCFPNQJ2
+    needs: [generate_measures_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       moderately_sensitive:
-        measure: output/01GV5GNQPG3SDNRVGETDTX1T5Y/plot_measure*.png
+        measure: output/01GVDPH4C178NC5XKZHCFPNQJ2/plot_measure*.png
 
-  event_counts_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  event_counts_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
-      python:latest python analysis/event_counts.py --input_dir="output/01GV5GNQPG3SDNRVGETDTX1T5Y/joined" --output_dir="output/01GV5GNQPG3SDNRVGETDTX1T5Y"
-    needs: [join_cohorts_01GV5GNQPG3SDNRVGETDTX1T5Y]
+      python:latest python analysis/event_counts.py --input_dir="output/01GVDPH4C178NC5XKZHCFPNQJ2/joined" --output_dir="output/01GVDPH4C178NC5XKZHCFPNQJ2"
+    needs: [join_cohorts_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       moderately_sensitive:
-        measure: output/01GV5GNQPG3SDNRVGETDTX1T5Y/event_counts.json
+        measure: output/01GVDPH4C178NC5XKZHCFPNQJ2/event_counts.json
 
-  generate_report_01GV5GNQPG3SDNRVGETDTX1T5Y:
+  generate_report_01GVDPH4C178NC5XKZHCFPNQJ2:
     run: >
       python:latest python analysis/render_report.py
-      --report-title="DMARDs & Care planning medication review simple reference set - NHS Digital"
+      --report-title="DMARDs & Medication Review - OpenSAFELY Service Restoration Observatory"
       --population="all"
-      --breakdowns="sex"
+      --breakdowns="sex,age"
       --codelist-1-name="DMARDs"
-      --codelist-2-name="Care planning medication review simple reference set - NHS Digital"
+      --codelist-2-name="Medication Review - OpenSAFELY Service Restoration Observatory"
       --codelist-1-link="opensafely/dmards/2020-06-23"
-      --codelist-2-link="opensafely/care-planning-medication-review-simple-reference-set-nhs-digital/61b13c39"
-      --time-value="3"
-      --time-scale="weeks"
+      --codelist-2-link="opensafely/medication-review-opensafely-service-restoration-observatory/24b50f64"
+      --time-value="5"
+      --time-scale="years"
       --time-event="before"
       --start-date="2022-09-02"
       --end-date="2023-03-01"
-      --request-id="01GV5GNQPG3SDNRVGETDTX1T5Y"
-    needs: [event_counts_01GV5GNQPG3SDNRVGETDTX1T5Y, deciles_chart_01GV5GNQPG3SDNRVGETDTX1T5Y, top_5_table_01GV5GNQPG3SDNRVGETDTX1T5Y, plot_measure_01GV5GNQPG3SDNRVGETDTX1T5Y]
+      --request-id="01GVDPH4C178NC5XKZHCFPNQJ2"
+    needs: [event_counts_01GVDPH4C178NC5XKZHCFPNQJ2, deciles_chart_01GVDPH4C178NC5XKZHCFPNQJ2, top_5_table_01GVDPH4C178NC5XKZHCFPNQJ2, plot_measure_01GVDPH4C178NC5XKZHCFPNQJ2]
     outputs:
       moderately_sensitive:
-        notebook: output/01GV5GNQPG3SDNRVGETDTX1T5Y/report.html
+        notebook: output/01GVDPH4C178NC5XKZHCFPNQJ2/report-01GVDPH4C178NC5XKZHCFPNQJ2.html
