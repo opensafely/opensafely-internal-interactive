@@ -5,124 +5,124 @@ expectations:
 
 actions:
 
-  generate_study_population_ethnicity_01GVZM1JMFYG87V8YQVR7AW8NX:
+  generate_study_population_ethnicity_01GWHQX96BFQ43TJ9J342Y234M:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition_ethnicity
-      --param end_date="2023-03-08"
-      --output-dir output/01GVZM1JMFYG87V8YQVR7AW8NX --output-format=csv.gz
+      --param end_date="2023-03-15"
+      --output-dir output/01GWHQX96BFQ43TJ9J342Y234M --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GVZM1JMFYG87V8YQVR7AW8NX/input_ethnicity.csv.gz
+        cohort: output/01GWHQX96BFQ43TJ9J342Y234M/input_ethnicity.csv.gz
 
 
-  generate_study_population_01GVZM1JMFYG87V8YQVR7AW8NX:
+  generate_study_population_01GWHQX96BFQ43TJ9J342Y234M:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition
-      --param codelist_1_path="codelists/codelist_1.csv"
+      --param codelist_1_path="interactive_codelists/codelist_1.csv"
       --param codelist_1_type="medication"
-      --param codelist_2_path="codelists/codelist_2.csv"
+      --param codelist_2_path="interactive_codelists/codelist_2.csv"
       --param codelist_2_type="event"
       --param codelist_1_frequency="monthly"
-      --param time_value="3"
-      --param time_scale="weeks"
+      --param time_value="5"
+      --param time_scale="years"
       --param time_event="before"
       --param codelist_2_comparison_date="end_date"
       --param operator="AND"
-      --param population="all"
-      --param breakdowns="sex,age,ethnicity"
-      --index-date-range="2022-09-09 to 2023-03-08 by month"
-      --output-dir=output/01GVZM1JMFYG87V8YQVR7AW8NX
+      --param population="adults"
+      --param breakdowns="sex,age,ethnicity,imd,region"
+      --index-date-range="2022-09-16 to 2023-03-15 by month"
+      --output-dir=output/01GWHQX96BFQ43TJ9J342Y234M
       --output-format=csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/01GVZM1JMFYG87V8YQVR7AW8NX/input_*.csv.gz
+        cohort: output/01GWHQX96BFQ43TJ9J342Y234M/input_*.csv.gz
 
-  join_cohorts_01GVZM1JMFYG87V8YQVR7AW8NX:
+  join_cohorts_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
       cohort-joiner:v0.0.38
-        --lhs output/01GVZM1JMFYG87V8YQVR7AW8NX/input_20*.csv.gz
-        --rhs output/01GVZM1JMFYG87V8YQVR7AW8NX/input_ethnicity.csv.gz
-        --output-dir output/01GVZM1JMFYG87V8YQVR7AW8NX/joined
-    needs: [generate_study_population_01GVZM1JMFYG87V8YQVR7AW8NX, generate_study_population_ethnicity_01GVZM1JMFYG87V8YQVR7AW8NX]
+        --lhs output/01GWHQX96BFQ43TJ9J342Y234M/input_20*.csv.gz
+        --rhs output/01GWHQX96BFQ43TJ9J342Y234M/input_ethnicity.csv.gz
+        --output-dir output/01GWHQX96BFQ43TJ9J342Y234M/joined
+    needs: [generate_study_population_01GWHQX96BFQ43TJ9J342Y234M, generate_study_population_ethnicity_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       highly_sensitive:
-        cohort: output/01GVZM1JMFYG87V8YQVR7AW8NX/joined/input_20*.csv.gz
+        cohort: output/01GWHQX96BFQ43TJ9J342Y234M/joined/input_20*.csv.gz
 
-  generate_measures_01GVZM1JMFYG87V8YQVR7AW8NX:
+  generate_measures_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
       python:latest -m analysis.measures
-        --breakdowns="sex,age,ethnicity"
-        --input_dir="output/01GVZM1JMFYG87V8YQVR7AW8NX/joined"
+        --breakdowns="sex,age,ethnicity,imd,region"
+        --input_dir="output/01GWHQX96BFQ43TJ9J342Y234M/joined"
         --measure="med_review"
 
-    needs: [join_cohorts_01GVZM1JMFYG87V8YQVR7AW8NX]
+    needs: [join_cohorts_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       moderately_sensitive:
-        measure: output/01GVZM1JMFYG87V8YQVR7AW8NX/joined/measure*rate.csv
-        decile_measure: output/01GVZM1JMFYG87V8YQVR7AW8NX/joined/measure*rate_deciles.csv
+        measure: output/01GWHQX96BFQ43TJ9J342Y234M/joined/measure*rate.csv
+        decile_measure: output/01GWHQX96BFQ43TJ9J342Y234M/joined/measure*rate_deciles.csv
 
-  top_5_table_01GVZM1JMFYG87V8YQVR7AW8NX:
+  top_5_table_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
       python:latest python analysis/top_5.py
-      --codelist-1-path="codelists/codelist_1.csv"
-      --codelist-2-path="codelists/codelist_2.csv"
-      --output-dir="output/01GVZM1JMFYG87V8YQVR7AW8NX"
-    needs: [generate_measures_01GVZM1JMFYG87V8YQVR7AW8NX]
+      --codelist-1-path="interactive_codelists/codelist_1.csv"
+      --codelist-2-path="interactive_codelists/codelist_2.csv"
+      --output-dir="output/01GWHQX96BFQ43TJ9J342Y234M"
+    needs: [generate_measures_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       moderately_sensitive:
-        tables: output/01GVZM1JMFYG87V8YQVR7AW8NX/joined/top_5*.csv
+        tables: output/01GWHQX96BFQ43TJ9J342Y234M/joined/top_5*.csv
 
-  deciles_chart_01GVZM1JMFYG87V8YQVR7AW8NX:
+  deciles_chart_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
       deciles-charts:v0.0.33
-        --input-files output/01GVZM1JMFYG87V8YQVR7AW8NX/joined/measure_practice_rate_deciles.csv
-        --output-dir output/01GVZM1JMFYG87V8YQVR7AW8NX/joined
+        --input-files output/01GWHQX96BFQ43TJ9J342Y234M/joined/measure_practice_rate_deciles.csv
+        --output-dir output/01GWHQX96BFQ43TJ9J342Y234M/joined
     config:
       show_outer_percentiles: true
       tables:
         output: true
       charts:
         output: true
-    needs: [generate_measures_01GVZM1JMFYG87V8YQVR7AW8NX]
+    needs: [generate_measures_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       moderately_sensitive:
-        deciles_charts: output/01GVZM1JMFYG87V8YQVR7AW8NX/joined/deciles_*.*
+        deciles_charts: output/01GWHQX96BFQ43TJ9J342Y234M/joined/deciles_*.*
 
-  plot_measure_01GVZM1JMFYG87V8YQVR7AW8NX:
+  plot_measure_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
       python:latest python analysis/plot_measures.py
-        --breakdowns="sex,age,ethnicity"
-        --output-dir output/01GVZM1JMFYG87V8YQVR7AW8NX
-    needs: [generate_measures_01GVZM1JMFYG87V8YQVR7AW8NX]
+        --breakdowns="sex,age,ethnicity,imd,region"
+        --output-dir output/01GWHQX96BFQ43TJ9J342Y234M
+    needs: [generate_measures_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       moderately_sensitive:
-        measure: output/01GVZM1JMFYG87V8YQVR7AW8NX/plot_measure*.png
+        measure: output/01GWHQX96BFQ43TJ9J342Y234M/plot_measure*.png
 
-  event_counts_01GVZM1JMFYG87V8YQVR7AW8NX:
+  event_counts_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
-      python:latest python analysis/event_counts.py --input_dir="output/01GVZM1JMFYG87V8YQVR7AW8NX/joined" --output_dir="output/01GVZM1JMFYG87V8YQVR7AW8NX"
-    needs: [join_cohorts_01GVZM1JMFYG87V8YQVR7AW8NX]
+      python:latest python analysis/event_counts.py --input_dir="output/01GWHQX96BFQ43TJ9J342Y234M/joined" --output_dir="output/01GWHQX96BFQ43TJ9J342Y234M"
+    needs: [join_cohorts_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       moderately_sensitive:
-        measure: output/01GVZM1JMFYG87V8YQVR7AW8NX/event_counts.json
+        measure: output/01GWHQX96BFQ43TJ9J342Y234M/event_counts.json
 
-  generate_report_01GVZM1JMFYG87V8YQVR7AW8NX:
+  generate_report_01GWHQX96BFQ43TJ9J342Y234M:
     run: >
       python:latest python analysis/render_report.py
-      --output-dir="output/01GVZM1JMFYG87V8YQVR7AW8NX"
-      --report-title="DMARDs & Care planning medication review simple reference set - NHS Digital"
-      --population="all"
-      --breakdowns="sex,age,ethnicity"
-      --codelist-1-name="DMARDs"
-      --codelist-2-name="Care planning medication review simple reference set - NHS Digital"
-      --codelist-1-link="opensafely/dmards/2020-06-23"
-      --codelist-2-link="opensafely/care-planning-medication-review-simple-reference-set-nhs-digital/61b13c39"
-      --time-value="3"
-      --time-scale="weeks"
+      --output-dir="output/01GWHQX96BFQ43TJ9J342Y234M"
+      --report-title="OpenPrescribing Measure: Co-amoxiclav, cephalosporins and quinolones (numerato & Chronic obstructive pulmonary disease (COPD) codes"
+      --population="adults"
+      --breakdowns="sex,age,ethnicity,imd,region"
+      --codelist-1-name="OpenPrescribing Measure: Co-amoxiclav, cephalosporins and quinolones (numerato"
+      --codelist-2-name="Chronic obstructive pulmonary disease (COPD) codes"
+      --codelist-1-link="opensafely/co-amoxiclav-cephalosporins-and-quinolones/0d299a50"
+      --codelist-2-link="nhsd-primary-care-domain-refsets/copd_cod/20210127"
+      --time-value="5"
+      --time-scale="years"
       --time-event="before"
-      --start-date="2022-09-09"
-      --end-date="2023-03-08"
-    needs: [event_counts_01GVZM1JMFYG87V8YQVR7AW8NX, deciles_chart_01GVZM1JMFYG87V8YQVR7AW8NX, top_5_table_01GVZM1JMFYG87V8YQVR7AW8NX, plot_measure_01GVZM1JMFYG87V8YQVR7AW8NX]
+      --start-date="2022-09-16"
+      --end-date="2023-03-15"
+    needs: [event_counts_01GWHQX96BFQ43TJ9J342Y234M, deciles_chart_01GWHQX96BFQ43TJ9J342Y234M, top_5_table_01GWHQX96BFQ43TJ9J342Y234M, plot_measure_01GWHQX96BFQ43TJ9J342Y234M]
     outputs:
       moderately_sensitive:
-        notebook: output/01GVZM1JMFYG87V8YQVR7AW8NX/report.html
+        notebook: output/01GWHQX96BFQ43TJ9J342Y234M/report.html
