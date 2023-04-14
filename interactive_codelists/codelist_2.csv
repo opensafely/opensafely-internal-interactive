@@ -1,114 +1,71 @@
 code,term
-103781000119103,Allergic bronchopulmonary mycosis
-10674711000119105,Acute severe exacerbation of asthma co-occurrent with allergic rhinitis
-10674991000119104,Intermittent allergic asthma
-10675391000119101,Severe controlled persistent asthma
-10675431000119106,Severe persistent allergic asthma
-10675471000119109,Acute severe exacerbation of severe persistent allergic asthma
-10675551000119104,Acute severe exacerbation of severe persistent asthma co-occurrent with allergic rhinitis
-10675751000119107,Severe uncontrolled persistent asthma
-10675871000119106,Mild persistent allergic asthma
-10675911000119109,Acute severe exacerbation of mild persistent allergic asthma
-10675991000119100,Acute severe exacerbation of mild persistent allergic asthma co-occurrent with allergic rhinitis
-10676391000119108,Moderate persistent allergic asthma
-10676431000119103,Acute severe exacerbation of moderate persistent allergic asthma
-10676511000119109,Acute severe exacerbation of moderate persistent asthma co-occurrent with allergic rhinitis
-10692681000119108,Aspirin exacerbated respiratory disease
-10692721000119102,Chronic obstructive asthma co-occurrent with acute exacerbation of asthma
-10692761000119107,Asthma-chronic obstructive pulmonary disease overlap syndrome
-10742121000119104,Asthma in mother complicating childbirth
-1086701000000102,Life threatening acute exacerbation of allergic asthma
-1086711000000100,Life threatening acute exacerbation of intrinsic asthma
-1103911000000103,Severe asthma with fungal sensitisation
-11641008,Millers' asthma
-12428000,Intrinsic asthma without status asthmaticus
-124991000119109,Severe persistent asthma co-occurrent with allergic rhinitis
-125001000119103,Moderate persistent asthma co-occurrent with allergic rhinitis
-125011000119100,Mild persistent asthma co-occurrent with allergic rhinitis
-125021000119107,Intermittent asthma co-occurrent with allergic rhinitis
-135171000119106,Acute exacerbation of moderate persistent asthma
-135181000119109,Acute exacerbation of mild persistent asthma
-16584951000119101,Oral steroid-dependent asthma
-1741000119102,Intermittent asthma uncontrolled
-1751000119100,Acute exacerbation of chronic obstructive airways disease with asthma
-18041002,Printers' asthma
-195949008,Chronic asthmatic bronchitis
-195967001,Asthma
-195977004,Mixed asthma
-19849005,Meat-wrappers' asthma
-225057002,Brittle asthma
-233678006,Childhood asthma
-233679003,Late onset asthma
-233683003,Hay fever with asthma
-233687002,Colophony asthma
-233688007,Sulfite-induced asthma
-2360001000004109,Steroid dependent asthma
-266361008,Non-allergic asthma
-281239006,Exacerbation of asthma
-304527002,Acute asthma
-31387002,Exercise-induced asthma
-34015007,Bakers' asthma
-370218001,Mild asthma
-370219009,Moderate asthma
-370220003,Occasional asthma
-370221004,Severe asthma
-37981002,Allergic bronchopulmonary aspergillosis
-389145006,Allergic asthma
-401000119107,Asthma with irreversible airway obstruction
-404804003,Platinum asthma
-404806001,Cheese-makers' asthma
-404808000,Isocyanate induced asthma
-405944004,Asthmatic bronchitis
-407674008,Aspirin-induced asthma
-409663006,Cough variant asthma
-41553006,Detergent asthma
-418395004,Tea-makers' asthma
-423889005,Non-immunoglobulin E mediated allergic asthma
-424199006,Substance induced asthma
-424643009,Immunoglobulin E-mediated allergic asthma
-425969006,Exacerbation of intermittent asthma
-426656000,Severe persistent asthma
-426979002,Mild persistent asthma
-427295004,Moderate persistent asthma
-427603009,Intermittent asthma
-427679007,Mild intermittent asthma
-442025000,Acute exacerbation of chronic asthmatic bronchitis
-445427006,Seasonal asthma
-55570000,Asthma without status asthmaticus
-56968009,Asthma caused by wood dust
-57607007,Occupational asthma
-59786004,Weavers' cough
-63088003,Allergic asthma without status asthmaticus
-703953004,Allergic asthma caused by Dermatophagoides pteronyssinus
-703954005,Allergic asthma caused by Dermatophagoides farinae
-707444001,Uncomplicated asthma
-707445000,Exacerbation of mild persistent asthma
-707446004,Exacerbation of moderate persistent asthma
-707447008,Exacerbation of severe persistent asthma
-707511009,Uncomplicated mild persistent asthma
-707512002,Uncomplicated moderate persistent asthma
-707513007,Uncomplicated severe persistent asthma
-707979007,Acute severe exacerbation of severe persistent asthma
-707980005,Acute severe exacerbation of moderate persistent asthma
-707981009,Acute severe exacerbation of mild persistent asthma
-708038006,Acute exacerbation of asthma
-708090002,Acute severe exacerbation of asthma
-708093000,Acute exacerbation of immunoglobulin E-mediated allergic asthma
-708094006,Acute exacerbation of intrinsic asthma
-708095007,Acute severe exacerbation of immunoglobin E-mediated allergic asthma
-708096008,Acute severe exacerbation of intrinsic asthma
-72301000119103,Asthma in pregnancy
-733858005,Acute severe refractory exacerbation of asthma
-734904007,Life threatening acute exacerbation of asthma
-734905008,Moderate acute exacerbation of asthma
-735588005,Uncomplicated allergic asthma
-735589002,Uncomplicated non-allergic asthma
-762521001,Exacerbation of allergic asthma
-782513000,Acute severe exacerbation of allergic asthma
-782520007,Exacerbation of allergic asthma due to infection
-786836003,Near fatal asthma
-829976001,Thunderstorm asthma
-866881000000101,Chronic asthma with fixed airflow obstruction
-92807009,Chemical-induced asthma
-93432008,Drug-induced asthma
-99031000119107,Acute exacerbation of asthma co-occurrent with allergic rhinitis
+753951000000101,Annual review of lithium therapy (procedure)
+381231000000106,High risk drug monitoring review (procedure)
+185381007,Repeat medication check (procedure)
+712761000000103,Concordance and compliance level 2 medication review (procedure)
+1089291000000107,Review of international normalised ratio time in therapeutic range (procedure)
+858091000000102,Respiratory disease medication review (procedure)
+922731000000106,Anticoagulant medication review (procedure)
+88551000000109,Medication review with patient (procedure)
+1831000124101,Pregnancy and lactation medication review (procedure)
+1106111000000108,"Stopping Over-Medication of People with Learning Disability, Autism or Both medication review (procedure)"
+473226007,Heart failure medication review (procedure)
+473227003,Metabolic disorder medication review (procedure)
+473224005,Gout medication review (procedure)
+473225006,Hypertension medication review (procedure)
+473228008,Neurological disorder medication review (procedure)
+473233007,Human immunodeficiency virus medication review (procedure)
+473232002,Infectious disease medication review (procedure)
+473231009,Renal disorder medication review (procedure)
+473230005,Gastrointestinal disorder medication review (procedure)
+473235000,Endocrine disorder medication review (procedure)
+473234001,Dyslipidemia medication review (procedure)
+473219007,Cardiovascular disorder medication review (procedure)
+473221002,Pulmonary disorder medication review (procedure)
+473220001,Hematologic disorder medication review (procedure)
+473223004,Chronic obstructive lung disorder medication review (procedure)
+415693003,Synchronization of repeat medication (procedure)
+391156007,Medication review without patient (procedure)
+1811000124107,Pain medication review (procedure)
+6021000124103,Targeted medication therapy review (procedure)
+1103191000000105,High risk drug monitoring two monthly review (procedure)
+381261000000101,High risk drug monitoring monthly review (procedure)
+370807008,Evaluation of response to medications (procedure)
+396076000,Medication prefill preparation assessment (procedure)
+730061000000107,Post hospital discharge medication reconciliation with medical notes (procedure)
+870661000000100,Polypharmacy medication review (procedure)
+1239511000000100,Structured medication review (procedure)
+170924003,Repeat prescription - follow-up assessment (regime/therapy)
+170916008,Follow-up warfarin assessment (regime/therapy)
+170908004,Follow-up risk drug assessment (regime/therapy)
+792951000000100,Dispensing review of use of warfarin (procedure)
+199711000000104,Annual warfarin assessment (regime/therapy)
+428911000124108,Comprehensive medication therapy review (procedure)
+1079381000000109,Medication review by community nurse (procedure)
+401062003,Epilepsy medication review (procedure)
+430193006,Medication Reconciliation (procedure)
+93311000000106,Medication review of medical notes (procedure)
+413974004,Depression medication review (procedure)
+381291000000107,High risk drug monitoring three monthly review (procedure)
+769063007,Antipsychotic medication review (procedure)
+413143000,Mental health medication review (procedure)
+938551000000108,Dementia medication review (procedure)
+965871000000101,Osteoporosis medication compliance review (procedure)
+395005007,Medicine labeling amended (procedure)
+353831000000100,Patient held anticoagulation therapy record updated (regime/therapy)
+394720003,Asthma medication review (procedure)
+394724007,Coronary heart disease medication review (procedure)
+394725008,Diabetes medication review (procedure)
+381321000000102,High risk drug monitoring six monthly review (procedure)
+1841000124106,Palliative care medication review (procedure)
+730021000000104,Post hospital discharge medication reconciliation with patient (procedure)
+182836005,Review of medication (procedure)
+279681000000105,Dispensing review of use of medicines (procedure)
+718017007,Bisphosphonate medication review (procedure)
+810241000000107,Cardiac medication review (procedure)
+803361000000109,Medication review by practice nurse (procedure)
+409024003,Medication monitoring assessment (procedure)
+409020007,Dispensing medication assessment (procedure)
+772741000000105,Dispensing review of use of medicines invitation (procedure)
+381351000000107,High risk drug monitoring annual review (procedure)
+287031000000100,Review of opioid medication (procedure)
