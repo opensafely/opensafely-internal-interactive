@@ -86,7 +86,10 @@ def get_data(
         dict containing the data
     """
 
-    breakdowns = breakdowns.split(",")
+    if breakdowns != "":
+        breakdowns = breakdowns.split(",")
+    else:
+        breakdowns = []
 
     codelist_url_root = "https://opencodelists.org/codelist/"
     codelist_1_link = codelist_url_root + codelist_1_link
@@ -102,7 +105,7 @@ def get_data(
 
     figures = {
         "decile": {
-            "path": output_dir / "joined/deciles_chart_practice_rate_deciles.png",
+            "path": output_dir / "deciles_chart.png",
             "data": output_dir / "joined/measure_practice_rate_deciles.csv",
         },
         "population": {
