@@ -1,0 +1,33 @@
+{
+  "demographics": [
+    "sex",
+    "age",
+    "ethnicity"
+  ],
+  "codelist_1": {
+    "label": "DMARDs",
+    "slug": "opensafely/dmards/2020-06-23",
+    "type": "medication",
+    "description": null,
+    "path": "interactive_codelists/codelist_1.csv"
+  },
+  "codelist_2": {
+    "label": "Medication Review - OpenSAFELY Service Restoration Observatory",
+    "slug": "opensafely/medication-review-opensafely-service-restoration-observatory/24b50f64",
+    "type": "event",
+    "description": null,
+    "path": "interactive_codelists/codelist_2.csv"
+  },
+  "filter_population": "all",
+  "time_value": null,
+  "time_scale": "",
+  "time_ever": true,
+  "time_event": "before",
+  "frequency": "monthly",
+  "start_date": "2019-09-01",
+  "end_date": "2023-03-31",
+  "week_of_latest_extract": "2023-04-17",
+  "created_by": "bloodearnest@gmail.com",
+  "repo": "https://github.com/opensafely/opensafely-internal-interactive",
+  "id": "01GZP4S728BBX30GY1564BMDCN"
+}
