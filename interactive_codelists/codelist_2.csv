@@ -1,67 +1,30 @@
 code,term
-1239511000000100,Structured medication review
-170908004,Follow-up risk drug assessment
-170916008,Follow-up warfarin assessment
-170924003,Repeat prescription - follow-up assessment
-1811000124107,Pain medication review
-182836005,Review of medication
-1831000124101,Pregnancy and lactation medication review
-1841000124106,Palliative care medication review
-185381007,Repeat medication check
-199711000000104,Annual warfarin assessment
-279681000000105,Dispensing review of use of medicines
-287031000000100,Review of opioid medication
-353831000000100,Patient held anticoagulation therapy record updated
-370807008,Evaluation of response to medications
-381231000000106,High risk drug monitoring review
-381261000000101,High risk drug monitoring monthly review
-381291000000107,High risk drug monitoring three monthly review
-381321000000102,High risk drug monitoring six monthly review
-381351000000107,High risk drug monitoring annual review
-391156007,Medication review without patient
-394720003,Asthma medication review
-394724007,Coronary heart disease medication review
-394725008,Diabetes medication review
-395005007,Medicine labeling amended
-396076000,Medication prefill preparation assessment
-401062003,Epilepsy medication review
-409020007,Dispensing medication assessment
-409024003,Medication monitoring assessment
-413143000,Mental health medication review
-413974004,Depression medication review
-415693003,Synchronization of repeat medication
-428911000124108,Comprehensive medication therapy review
-430193006,Medication Reconciliation
-473219007,Cardiovascular disorder medication review
-473220001,Hematologic disorder medication review
-473221002,Pulmonary disorder medication review
-473223004,Chronic obstructive lung disorder medication review
-473224005,Gout medication review
-473225006,Hypertension medication review
-473226007,Heart failure medication review
-473227003,Metabolic disorder medication review
-473228008,Neurological disorder medication review
-473230005,Gastrointestinal disorder medication review
-473231009,Renal disorder medication review
-473232002,Infectious disease medication review
-473233007,Human immunodeficiency virus medication review
-473234001,Dyslipidemia medication review
-473235000,Endocrine disorder medication review
-6021000124103,Targeted medication therapy review
-712761000000103,Concordance and compliance level 2 medication review
-718017007,Bisphosphonate medication review
-730021000000104,Post hospital discharge medication reconciliation with patient
-730061000000107,Post hospital discharge medication reconciliation with medical notes
-753951000000101,Annual review of lithium therapy
-769063007,Antipsychotic medication review
-772741000000105,Dispensing review of use of medicines invitation
-792951000000100,Dispensing review of use of warfarin
-803361000000109,Medication review by practice nurse
-810241000000107,Cardiac medication review
-858091000000102,Respiratory disease medication review
-870661000000100,Polypharmacy medication review
-88551000000109,Medication review with patient
-922731000000106,Anticoagulant medication review
-93311000000106,Medication review of medical notes
-938551000000108,Dementia medication review
-965871000000101,Osteoporosis medication compliance review
+10759351000119103,Sickle cell anemia in mother complicating childbirth
+11603001,Sickle cell retinopathy
+127040003,Sickle cell-hemoglobin SS disease
+127041004,Sickle cell-beta-thalassemia
+127042006,Sickle cell beta plus thalassemia
+127043001,Sickle cell-beta^0^-thalassemia
+127044007,Sickle cell-delta beta^0^-thalassemia
+127045008,Sickle cell anemia with coexistent alpha-thalassemia
+127047000,Sickle cell-hemoglobin Lepore disease
+127048005,Sickle cell-Hemoglobin O Arab disease
+13886001,Sickle cell nephropathy
+193370005,Proliferative retinopathy due to sickle cell disease
+232033003,Sickle cell-hemoglobin C retinopathy
+234391009,Sickle cell anemia with high hemoglobin F
+25472008,Sickle cell-hemoglobin D disease
+35434009,Sickle cell-hemoglobin C disease
+36472007,Sickle cell-thalassemia disease
+416214006,Sickle cell-hemoglobin D disease without crisis
+416484003,Sickle cell-hemoglobin E disease with crisis
+416638004,Sickle cell-hemoglobin E disease without crisis
+416826005,Sickle cell-thalassemia disease with crisis
+417048006,Sickle cell-thalassemia disease without crisis
+417517009,Sickle cell-hemoglobin C disease with crisis
+417683006,Sickle cell-hemoglobin C disease without crisis
+417748003,Sickle cell-hemoglobin D disease with crisis
+441482006,History of sickle cell anemia
+444108000,Acute sickle cell splenic sequestration crisis
+47024008,Sickle cell-hemoglobin E disease
+769167005,Vaso-occlusive pain co-occurrent and due to sickle cell disease

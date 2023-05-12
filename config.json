@@ -2,18 +2,20 @@
   "demographics": [
     "sex",
     "age",
-    "ethnicity"
+    "ethnicity",
+    "imd",
+    "region"
   ],
   "codelist_1": {
-    "label": "DMARDs",
-    "slug": "opensafely/dmards/2020-06-23",
+    "label": "Opioid-containing medicines (oral - excluding drugs for substance misuse) - dm+d",
+    "slug": "opensafely/opioid-containing-medicines-oral-excluding-drugs-for-substance-misuse-dmd/6eb4a72e",
     "type": "medication",
     "description": null,
     "path": "interactive_codelists/codelist_1.csv"
   },
   "codelist_2": {
-    "label": "Medication Review - OpenSAFELY Service Restoration Observatory",
-    "slug": "opensafely/medication-review-opensafely-service-restoration-observatory/24b50f64",
+    "label": "Sickle (SPL-AtRiskv4) (SNOMED CT)",
+    "slug": "nhsd/sickle-spl-atriskv4-snomed-ct/7083ed37",
     "type": "event",
     "description": null,
     "path": "interactive_codelists/codelist_2.csv"
@@ -25,9 +27,9 @@
   "time_event": "before",
   "frequency": "monthly",
   "start_date": "2019-09-01",
-  "end_date": "2023-03-31",
-  "week_of_latest_extract": "2023-04-17",
-  "created_by": "bloodearnest@gmail.com",
+  "end_date": "2023-04-30",
+  "week_of_latest_extract": "2023-04-24",
+  "created_by": "lucy.bridges@thedatalab.org",
   "repo": "https://github.com/opensafely/opensafely-internal-interactive",
-  "id": "01GZP4S728BBX30GY1564BMDCN"
+  "id": "01H08E5TR9JRWX6D1BK8PWV54X"
 }
