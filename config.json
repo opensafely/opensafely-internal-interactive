@@ -1,29 +1,27 @@
 {
   "demographics": [
-    "sex",
-    "age",
     "ethnicity",
     "imd",
     "region"
   ],
   "codelist_1": {
-    "label": "Opioid-containing medicines (oral - excluding drugs for substance misuse) - dm+d",
-    "slug": "opensafely/opioid-containing-medicines-oral-excluding-drugs-for-substance-misuse-dmd/6eb4a72e",
-    "type": "medication",
+    "label": "UTI",
+    "slug": "user/rriefu/uti/5661f324",
+    "type": "event",
     "description": null,
     "path": "interactive_codelists/codelist_1.csv"
   },
   "codelist_2": {
-    "label": "Sickle (SPL-AtRiskv4) (SNOMED CT)",
-    "slug": "nhsd/sickle-spl-atriskv4-snomed-ct/7083ed37",
-    "type": "event",
+    "label": "Urinary-tract infections (antibacterials)",
+    "slug": "user/alexorlek/urinary-tract-infections-antibacterials/1bf256ea",
+    "type": "medication",
     "description": null,
     "path": "interactive_codelists/codelist_2.csv"
   },
-  "filter_population": "all",
-  "time_value": null,
-  "time_scale": "",
-  "time_ever": true,
+  "filter_population": "adults",
+  "time_value": 0,
+  "time_scale": "years",
+  "time_ever": false,
   "time_event": "before",
   "frequency": "monthly",
   "start_date": "2019-09-01",
@@ -31,5 +29,5 @@
   "week_of_latest_extract": "2023-04-24",
   "created_by": "lucy.bridges@thedatalab.org",
   "repo": "https://github.com/opensafely/opensafely-internal-interactive",
-  "id": "01H08E5TR9JRWX6D1BK8PWV54X"
+  "id": "01H08ET46JDBZDQ49RC1ZE06FS"
 }
