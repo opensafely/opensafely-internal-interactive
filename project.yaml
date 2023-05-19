@@ -5,99 +5,103 @@ expectations:
 
 actions:
 
-  generate_study_population_ethnicity_01H08ET46JDBZDQ49RC1ZE06FS:
+  generate_study_population_ethnicity_01H0T89A5A0GG0C26Y8769FG75:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition_ethnicity
-      --output-dir output/01H08ET46JDBZDQ49RC1ZE06FS --output-format=feather
+      --output-dir output/01H0T89A5A0GG0C26Y8769FG75 --output-format=feather
     outputs:
       highly_sensitive:
-        cohort: output/01H08ET46JDBZDQ49RC1ZE06FS/input_ethnicity.feather
+        cohort: output/01H0T89A5A0GG0C26Y8769FG75/input_ethnicity.feather
 
-  generate_study_population_weekly_01H08ET46JDBZDQ49RC1ZE06FS:
+  generate_study_population_weekly_01H0T89A5A0GG0C26Y8769FG75:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition
       --param codelist_1_frequency="weekly"
       --param breakdowns=""
-      --index-date_range="2023-04-24 to 2023-04-24 by week"
-      --output-dir=output/01H08ET46JDBZDQ49RC1ZE06FS
+      --index-date_range="2023-05-01 to 2023-05-01 by week"
+      --output-dir=output/01H0T89A5A0GG0C26Y8769FG75
       --output-format=feather
-      --output-file=output/01H08ET46JDBZDQ49RC1ZE06FS/input_weekly_2023-04-24.feather
+      --output-file=output/01H0T89A5A0GG0C26Y8769FG75/input_weekly_2023-05-01.feather
     outputs:
       highly_sensitive:
-        cohort: output/01H08ET46JDBZDQ49RC1ZE06FS/input_weekly_2023-04-24.feather
+        cohort: output/01H0T89A5A0GG0C26Y8769FG75/input_weekly_2023-05-01.feather
 
-  generate_study_population_01H08ET46JDBZDQ49RC1ZE06FS:
+  generate_study_population_01H0T89A5A0GG0C26Y8769FG75:
     run: cohortextractor:latest generate_cohort
       --study-definition study_definition
       --index-date-range="2019-09-01 to 2023-04-30 by month"
-      --output-dir=output/01H08ET46JDBZDQ49RC1ZE06FS
+      --output-dir=output/01H0T89A5A0GG0C26Y8769FG75
       --output-format=feather
     outputs:
       highly_sensitive:
-        cohort: output/01H08ET46JDBZDQ49RC1ZE06FS/input_*.feather
+        cohort: output/01H0T89A5A0GG0C26Y8769FG75/input_*.feather
 
-  join_cohorts_01H08ET46JDBZDQ49RC1ZE06FS:
+  join_cohorts_01H0T89A5A0GG0C26Y8769FG75:
     run: >
       cohort-joiner:v0.0.38
-        --lhs output/01H08ET46JDBZDQ49RC1ZE06FS/input_20*.feather
-        --rhs output/01H08ET46JDBZDQ49RC1ZE06FS/input_ethnicity.feather
-        --output-dir output/01H08ET46JDBZDQ49RC1ZE06FS/joined
-    needs: [generate_study_population_01H08ET46JDBZDQ49RC1ZE06FS, generate_study_population_ethnicity_01H08ET46JDBZDQ49RC1ZE06FS]
+        --lhs output/01H0T89A5A0GG0C26Y8769FG75/input_20*.feather
+        --rhs output/01H0T89A5A0GG0C26Y8769FG75/input_ethnicity.feather
+        --output-dir output/01H0T89A5A0GG0C26Y8769FG75/joined
+    needs: [generate_study_population_01H0T89A5A0GG0C26Y8769FG75, generate_study_population_ethnicity_01H0T89A5A0GG0C26Y8769FG75]
     outputs:
       highly_sensitive:
-        cohort: output/01H08ET46JDBZDQ49RC1ZE06FS/joined/input_20*.feather
+        cohort: output/01H0T89A5A0GG0C26Y8769FG75/joined/input_20*.feather
 
-  generate_measures_01H08ET46JDBZDQ49RC1ZE06FS:
+  generate_measures_01H0T89A5A0GG0C26Y8769FG75:
     run: >
       python:latest -m analysis.measures
+        --breakdowns=sex
+        --breakdowns=age
         --breakdowns=ethnicity
         --breakdowns=imd
         --breakdowns=region
-        --input-dir="output/01H08ET46JDBZDQ49RC1ZE06FS/joined"
+        --input-dir="output/01H0T89A5A0GG0C26Y8769FG75/joined"
 
-    needs: [join_cohorts_01H08ET46JDBZDQ49RC1ZE06FS]
+    needs: [join_cohorts_01H0T89A5A0GG0C26Y8769FG75]
     outputs:
       moderately_sensitive:
-        measure: output/01H08ET46JDBZDQ49RC1ZE06FS/joined/measure_all.csv
-        decile_measure: output/01H08ET46JDBZDQ49RC1ZE06FS/joined/measure_practice_rate_deciles.csv
+        measure: output/01H0T89A5A0GG0C26Y8769FG75/joined/measure_all.csv
+        decile_measure: output/01H0T89A5A0GG0C26Y8769FG75/joined/measure_practice_rate_deciles.csv
 
-  top_5_table_01H08ET46JDBZDQ49RC1ZE06FS:
+  top_5_table_01H0T89A5A0GG0C26Y8769FG75:
     run: >
       python:latest python analysis/top_5.py
       --codelist-1-path="interactive_codelists/codelist_1.csv"
       --codelist-2-path="interactive_codelists/codelist_2.csv"
-      --output-dir="output/01H08ET46JDBZDQ49RC1ZE06FS"
-    needs: [generate_measures_01H08ET46JDBZDQ49RC1ZE06FS]
+      --output-dir="output/01H0T89A5A0GG0C26Y8769FG75"
+    needs: [generate_measures_01H0T89A5A0GG0C26Y8769FG75]
     outputs:
       moderately_sensitive:
-        tables: output/01H08ET46JDBZDQ49RC1ZE06FS/joined/top_5*.csv
+        tables: output/01H0T89A5A0GG0C26Y8769FG75/joined/top_5*.csv
 
-  plot_measure_01H08ET46JDBZDQ49RC1ZE06FS:
+  plot_measure_01H0T89A5A0GG0C26Y8769FG75:
     run: >
       python:latest python analysis/plot_measures.py
+        --breakdowns=sex
+        --breakdowns=age
         --breakdowns=ethnicity
         --breakdowns=imd
         --breakdowns=region
-        --output-dir output/01H08ET46JDBZDQ49RC1ZE06FS
-    needs: [generate_measures_01H08ET46JDBZDQ49RC1ZE06FS]
+        --output-dir output/01H0T89A5A0GG0C26Y8769FG75
+    needs: [generate_measures_01H0T89A5A0GG0C26Y8769FG75]
     outputs:
       moderately_sensitive:
-        measure: output/01H08ET46JDBZDQ49RC1ZE06FS/plot_measure*.png
-        deciles: output/01H08ET46JDBZDQ49RC1ZE06FS/deciles_chart.png
+        measure: output/01H0T89A5A0GG0C26Y8769FG75/plot_measure*.png
+        deciles: output/01H0T89A5A0GG0C26Y8769FG75/deciles_chart.png
 
-  event_counts_01H08ET46JDBZDQ49RC1ZE06FS:
+  event_counts_01H0T89A5A0GG0C26Y8769FG75:
     run: >
-      python:latest -m analysis.event_counts --input-dir="output/01H08ET46JDBZDQ49RC1ZE06FS" --output-dir="output/01H08ET46JDBZDQ49RC1ZE06FS"
-    needs: [join_cohorts_01H08ET46JDBZDQ49RC1ZE06FS, generate_study_population_weekly_01H08ET46JDBZDQ49RC1ZE06FS]
+      python:latest -m analysis.event_counts --input-dir="output/01H0T89A5A0GG0C26Y8769FG75" --output-dir="output/01H0T89A5A0GG0C26Y8769FG75"
+    needs: [join_cohorts_01H0T89A5A0GG0C26Y8769FG75, generate_study_population_weekly_01H0T89A5A0GG0C26Y8769FG75]
     outputs:
       moderately_sensitive:
-        measure: output/01H08ET46JDBZDQ49RC1ZE06FS/event_counts.json
+        measure: output/01H0T89A5A0GG0C26Y8769FG75/event_counts.json
 
-  generate_report_01H08ET46JDBZDQ49RC1ZE06FS:
+  generate_report_01H0T89A5A0GG0C26Y8769FG75:
     run: >
       python:latest python analysis/render_report.py
-      --output-dir="output/01H08ET46JDBZDQ49RC1ZE06FS"
-    needs: [event_counts_01H08ET46JDBZDQ49RC1ZE06FS, top_5_table_01H08ET46JDBZDQ49RC1ZE06FS, plot_measure_01H08ET46JDBZDQ49RC1ZE06FS]
+      --output-dir="output/01H0T89A5A0GG0C26Y8769FG75"
+    needs: [event_counts_01H0T89A5A0GG0C26Y8769FG75, top_5_table_01H0T89A5A0GG0C26Y8769FG75, plot_measure_01H0T89A5A0GG0C26Y8769FG75]
     outputs:
       moderately_sensitive:
-        notebook: output/01H08ET46JDBZDQ49RC1ZE06FS/report.html
+        notebook: output/01H0T89A5A0GG0C26Y8769FG75/report.html

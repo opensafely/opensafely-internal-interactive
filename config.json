@@ -1,33 +1,35 @@
 {
   "demographics": [
+    "sex",
+    "age",
     "ethnicity",
     "imd",
     "region"
   ],
   "codelist_1": {
-    "label": "UTI",
-    "slug": "user/rriefu/uti/5661f324",
+    "label": "Asthma annual review QOF",
+    "slug": "opensafely/asthma-annual-review-qof/33eeb7da",
     "type": "event",
     "description": null,
     "path": "interactive_codelists/codelist_1.csv"
   },
   "codelist_2": {
-    "label": "Urinary-tract infections (antibacterials)",
-    "slug": "user/alexorlek/urinary-tract-infections-antibacterials/1bf256ea",
-    "type": "medication",
+    "label": "Asthma",
+    "slug": "pincer/ast/v1.8",
+    "type": "event",
     "description": null,
     "path": "interactive_codelists/codelist_2.csv"
   },
-  "filter_population": "adults",
-  "time_value": 0,
+  "filter_population": "children",
+  "time_value": 3,
   "time_scale": "years",
   "time_ever": false,
   "time_event": "before",
   "frequency": "monthly",
   "start_date": "2019-09-01",
   "end_date": "2023-04-30",
-  "week_of_latest_extract": "2023-04-24",
-  "created_by": "lucy.bridges@thedatalab.org",
+  "week_of_latest_extract": "2023-05-01",
+  "created_by": "catherine.stables@thedatalab.org",
   "repo": "https://github.com/opensafely/opensafely-internal-interactive",
-  "id": "01H08ET46JDBZDQ49RC1ZE06FS"
+  "id": "01H0T89A5A0GG0C26Y8769FG75"
 }
