@@ -7,22 +7,22 @@
     "region"
   ],
   "codelist_1": {
-    "label": "Asthma annual review QOF",
-    "slug": "opensafely/asthma-annual-review-qof/33eeb7da",
-    "type": "event",
+    "label": "Aspirin",
+    "slug": "opensafely/aspirin/2020-07-01",
+    "type": "medication",
     "description": null,
     "path": "interactive_codelists/codelist_1.csv"
   },
   "codelist_2": {
-    "label": "Asthma",
-    "slug": "pincer/ast/v1.8",
-    "type": "event",
+    "label": "Antidiabetic drugs",
+    "slug": "opensafely/antidiabetic-drugs/2020-07-16",
+    "type": "medication",
     "description": null,
     "path": "interactive_codelists/codelist_2.csv"
   },
-  "filter_population": "children",
-  "time_value": 3,
-  "time_scale": "years",
+  "filter_population": "all",
+  "time_value": 6,
+  "time_scale": "months",
   "time_ever": false,
   "time_event": "before",
   "frequency": "monthly",
@@ -31,5 +31,5 @@
   "week_of_latest_extract": "2023-05-08",
   "created_by": "catherine.stables@thedatalab.org",
   "repo": "https://github.com/opensafely/opensafely-internal-interactive",
-  "id": "01H170FE21AVFSCDH70ET4HARZ"
+  "id": "01H170K13SCPCZBQ1GJEYTYED2"
 }
