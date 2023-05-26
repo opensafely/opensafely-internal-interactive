@@ -62,7 +62,7 @@ def get_data(
     codelist_1_link="",
     codelist_2_name="",
     codelist_2_link="",
-    time_value="",
+    time_value=0,
     time_scale="",
     time_event="",
     start_date="",
@@ -79,7 +79,7 @@ def get_data(
         codelist_1_link (str): link to the first codelist (OpenCodelists)
         codelist_2_name (str): name of the second codelist
         codelist_2_link (str): link to the second codelist (OpenCodelists)
-        time_value (str): time value for the report
+        time_value (int): time value for the report
         time_scale (str): time scale for the report
         time_event (str): time event for the report
         start_date (str): start date for the report
@@ -93,8 +93,8 @@ def get_data(
     codelist_1_link = codelist_url_root + codelist_1_link
     codelist_2_link = codelist_url_root + codelist_2_link
 
-    top_5_1_path = output_dir / "joined/top_5_code_table_1.csv"
-    top_5_2_path = output_dir / "joined/top_5_code_table_2.csv"
+    top_5_1_path = output_dir / "top_5_code_table_1.csv"
+    top_5_2_path = output_dir / "top_5_code_table_2.csv"
     summary_table_path = output_dir / "event_counts.json"
 
     top_5_1_data = data_from_csv(top_5_1_path)
@@ -104,33 +104,39 @@ def get_data(
     figures = {
         "decile": {
             "path": output_dir / "deciles_chart.png",
-            "data": output_dir / "joined/measure_practice_rate_deciles.csv",
+            "data": output_dir / "measure_practice_rate_deciles.csv",
         },
         "population": {
             "path": output_dir / "plot_measures.png",
-            "data": output_dir / "joined/measure_total_rate.csv",
+            "data": output_dir / "measure_total_rate.csv",
         },
         "sex": {
             "path": output_dir / "plot_measures_sex.png",
-            "data": output_dir / "joined/measure_sex_rate.csv",
+            "data": output_dir / "measure_sex_rate.csv",
         },
         "age": {
             "path": output_dir / "plot_measures_age.png",
-            "data": output_dir / "joined/measure_age_rate.csv",
+            "data": output_dir / "measure_age_rate.csv",
         },
         "imd": {
             "path": output_dir / "plot_measures_imd.png",
-            "data": output_dir / "joined/measure_imd_rate.csv",
+            "data": output_dir / "measure_imd_rate.csv",
         },
         "region": {
             "path": output_dir / "plot_measures_region.png",
-            "data": output_dir / "joined/measure_region_rate.csv",
+            "data": output_dir / "measure_region_rate.csv",
         },
         "ethnicity": {
             "path": output_dir / "plot_measures_ethnicity.png",
-            "data": output_dir / "joined/measure_ethnicity_rate.csv",
+            "data": output_dir / "measure_ethnicity_rate.csv",
         },
     }
+
+    for figure in figures:
+        if not figures[figure]["path"].exists():
+            figures[figure]["exists"] = False
+        else:
+            figures[figure]["exists"] = True
 
     breakdowns_options = {
         "age": {
